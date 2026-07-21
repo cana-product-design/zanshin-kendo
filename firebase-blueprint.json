@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile and Training State",
+      "description": "Stores user demographic info, training preferences, generated plans, active plan, active session, and XP progress history.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth user ID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "name": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "profile": {
+          "type": "object",
+          "description": "User's demographic details and goals"
+        },
+        "progress": {
+          "type": "object",
+          "description": "User's gamified stats, XP, and weekly progress history"
+        },
+        "activePlan": {
+          "type": "object",
+          "description": "The currently selected training program"
+        },
+        "plans": {
+          "type": "array",
+          "description": "The generated training plans for the user"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "name", "progress"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Individual user document containing profile, plans, active plan, and progress."
+    }
+  }
+}

@@ -2,6 +2,8 @@ import React from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
+  userEmail?: string | null;
+  onSignOut?: () => void;
 }
 
 const ZanshinLogo = () => (
@@ -13,7 +15,7 @@ const ZanshinLogo = () => (
   </svg>
 );
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, userEmail, onSignOut }) => {
   return (
     <div className="min-h-screen flex flex-col relative bg-[#050811] text-white overflow-x-hidden">
       {/* Immersive Background Gradient/Texture */}
@@ -34,8 +36,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </h1>
             </div>
           </div>
-          {/* Status Indicator */}
-          <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+          {/* Status Indicator or Sign Out */}
+          {userEmail ? (
+            <button 
+              onClick={onSignOut}
+              className="text-[10px] tracking-widest font-bold uppercase text-gray-400 hover:text-red-400 bg-white/5 hover:bg-red-950/20 px-2.5 py-1.5 rounded-lg border border-white/5 hover:border-red-900/30 transition-all cursor-pointer"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+          )}
         </div>
       </header>
 
